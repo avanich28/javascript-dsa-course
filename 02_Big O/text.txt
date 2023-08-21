@@ -1,0 +1,136 @@
+- Section 2: Big O -
+
+Topic: 04_Intro
+
+- Big O is a way to mathematically figure out which of these 2 codes is better, which one runs more efficiently.
+
+1. time complexity 
+- code that runs less time, but may use a lot of memory
+- But the number of operations would be the same. 
+  - So either way, on the fast computer or the slow computer, the time complexity would be the same. 
+
+2. space complexity 
+- amount of memory 
+- code that uses less memory, but may run more time
+
+Topic: 05_Worst Case
+
+1. Ω - Omega
+2. θ - theta
+3. O - Omicron - Big O
+
+arr = [1, 2, 3, 4, 5, 6, 7]
+1 - omega best Case
+4 - theta average case
+7 - big O worst case
+
+Topic: 06_O(n) (Big O notation)
+
+function logItems(n) {
+  for (let i = 0; i < n; i++) {
+    console.log(i);
+  }
+}
+
+- This is an O of n operation -> O(n)
+- run 10 times -> This is a O events
+
+- O(n) is a proportional line
+- x axis represents n
+- y axis represents the number of operations
+
+Topic: 07_Drop Constraint
+
+- n + n = 2n -> O(2n) 
+-> no matter it was 0 to 100n, it was a constant 
+-> rule of Big O notation -> drop constants (get rid of 2)
+
+Topic: 08_O(n^2)
+
+- n * n = n^2 -> O(n^2)
+- In ex, O(n^2) -> 100 numbers
+
+- n * n * n = n^3 -> O(n^3) cube
+- In ex, getting 1000 numbers
+
+- In graph, O(n) is more efficient or better than O(n^2) because it's going to complete the task in fewer operations. 🔥
+
+Topic: 09_Drop Non-Dominants
+
+- O(n^2 + n)
+- n^2 is the dominant term
+- n is the non dominant term
+- remove n -> drop non-dominants
+
+Topic: 10_O(1)
+
+function addItems(n) {
+  return n + n;
+}
+
+- no matter n is 1 or million, the number of operation will be 1
+- O(1) -> constant time
+- In graph, flat line 
+- the most efficient of big O 🔥
+
+Topic: 11_O(log n)
+
+sortedArr = [1, 2, 3, 4, 5, 6, 7, 8]
+
+- Want to get 1
+- Technique: divide and conquer
+- cut half 1234 5678 -> 12 34 -> 12 -> 1
+- 2^3 = 8 -> log8/log2 = 3 (get power)
+- You don't need to find number 8 steps, but find only 3 steps.
+- In graph, almost flat
+
+++ O(nlog n) -> Sorting algorithm
+
+Topic: Different Terms for Input
+
+function logItems(a, b) {
+    for (let i = 0; i < a; i++) {
+        console.log(i)
+    }
+
+    for (let j = 0; j < b; j++) {
+        console.log(j)
+    }
+}
+
+// In interview
+- Cannot say O(n) event
+- Should say O(a + b)
+- If nested O(a * b)
+
+Topic: Arrays
+
+myArray = [11, 3, 23, 7]
+
+- Big O of Arrays
+
+- Don't need to re index -> O(1)
+myArray.push(17)
+myArray.pop()
+
+- Need to re index -> O(n)
+- n is the number of items in the array.
+myArray.shift()
+myArray.unshift()
+
+- Need to re index -> O(n)
+- Cannot be O(1/2 n) because Big O is the worst case, not average case
+myArray.splice(1, 0, 'Hi')
+
+- Find Value -> O(n)
+- Find Index -> go directly to the memory -> O(1)
+
+- Access value by index -> array is a good idea
+- Adding or removing a lot of items -> array is not a good idea
+
+Topic: Wrap Up
+
+- O(n^2) - Loop within a Loop
+- O(n) - proportional
+- O(log n) - Divide and conquer
+- O(1) - Constant

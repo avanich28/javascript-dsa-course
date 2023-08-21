@@ -1,0 +1,30 @@
+- Section 3: Classes & Pointers -
+
+Topic: 15_Classes
+
+- Use class to do specific things in data structure
+class LinkedList {
+  constructor(value) {...}
+  push(value) {...}
+  unshift(value) {...}
+  insert(index, value) {...}
+  remove(index) {...}
+  pop() {...}
+  shift {...}
+}
+
+Topic: Pointers (->)
+
+let num1 = 5
+let num2 = num1
+num1 = 10 (num2 is still 5)
+
+const obj1 = {
+  value: 11
+}
+
+let obj2 = obj1
+
+obj1.value = 22 (obj2.value will be 22 too.)
+
+- If that object don't have any variables pointing to it, JS will do the process called 'Garbage Collection'.
