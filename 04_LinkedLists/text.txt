@@ -1,0 +1,271 @@
+- Section 4: Linked Lists -
+
+Topic: Intro
+
+- Array is a contiguous memory 🔥, but linked list can be all over the place of memory.
+
+- Linked List have a variable called head and tail.
+
+- Head points to the first item.
+- Tail points to the last item.
+
+- And, each item in the linked list will point to the next to the next.
+ex. 11 (head) -> 3 -> 23 -> 7 (tail) -> null
+
+Topic: Big obj
+
+// In Linked List
+- Can go forward
+- Can't go backward 
+
+- Nodes
+5(add) -> 11 -> 3 -> 23 -> 7 -> 4(add)
+- add 4 the number of step would be the same O(1)
+- add 5 -> O(1) -> head
+- remove 5 -> O(1) -> head = head.next
+
+- .pop() -> Iterate -> O(n) -> set tail
+- .unshift() -> O(1) -> set head
+- insert/delete -> O(n)
+- find value/index-> O(n)
+
+Topic: Under the hood
+
+- Node is both the value and pointer
+- Node is an obj
+{
+  value: 4,
+  next: null
+}
+- next: pointer (arrow) => next:{}
+- tail is equal to the next value of the 7 node
+
+let linkListed = {
+  head: {
+    value: 11,
+    next: {
+      value: 3,
+      next: {
+        value: 23,
+        next: {
+          value: 7,
+          next: (tail ->) {
+            value: 4,
+            next: null 
+          }
+        }
+      }
+    }
+  }
+}
+
+Topic: constructor
+
+class Node {
+  constructor(value) {
+    this.value = value
+    this.next = null
+  }
+}
+const newNode = new Node(4)
+{
+  value: 4,
+  next: null
+}
+
+class LinkedList {
+  constructor(value) {
+    const newNode = new Node(value)
+    this.head = newNode
+    this.tail = this.head
+    this.length = 1
+  }
+
+  Topic: Push
+  
+  // Create a new node
+  push(value) {
+    const newNode = new Node(value);
+    if(!this.head) {
+      // Linked List empty
+      this.head = newNode;
+      this.tail =  newNode;
+    } else {
+      // Linked List isn't empty
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    this.length++;
+    return this;
+  }
+  unshift(value) {}
+  insert(index, value) {}
+}
+
+let myLinkedList = new LinkedList(4)
+
+Topic: Pop - Intro
+
+- case 1: If null, cannot pop()
+- case 2: 1 item
+- case 3: > 1 item
+
+- setting temp and pre variables
+- tempt.next
+- pre
+- temp.next = null
+- tail = pre
+- tail.next = null
+- return temp.next
+
+Topic: Pop - Code
+
+pop() {
+  if (!this.head) return undefined;
+  let temp = this.head;
+  let pre = this.head;
+
+  while (temp.next) {
+    pre = temp;
+    temp = temp.next;
+  }
+
+  this.tail = pre;
+  this.tail.next = null;
+  this.length--;
+  
+  if(this.length === 0) {
+    this.head = null;
+    this.tail = null;
+  }
+
+  return temp;
+}
+
+Topic: Unshift
+
+unshift(value) {
+  const newNode = new Node(value);
+
+  if(!this.head) {
+    this.head = newNode;
+    this.tail = newNode;
+  } else {
+    newNode.next = this.head;
+    this.head = newNode;
+  }
+  this.length++;
+  return this;
+}
+
+Topic: Shift
+
+shift() {
+  if(!this.head) return undefined;
+
+  let temp = this.head;
+  this.head = this.head.next;
+  temp.next = null;
+  
+  this.length--;
+  if(this.length === 0) this.tail = null;
+
+  return temp;
+}
+
+Topic: Get
+
+get(index) {
+  if(index < 0 || index >= this.length) return undefined;
+
+  let temp = this.head;
+  for(let i = 0; i < index; i++) {
+    temp = temp.next;
+  }
+
+  return temp;
+}
+
+Topic: Set
+
+// Can use get method
+
+set(index, value) {
+  let temp = this.get(index);
+  if(temp) {
+    temp.value = value;
+    return true;
+  }
+  return false;
+}
+
+Topic: insert
+
+insert(index, value) {
+  if(index === 0) return this.unshift(value);
+
+  if(index === this.length) return this.push(value)
+
+  if(index < 0 || index > this.length) return false;
+
+  // Middle case
+  const newNode = new Node(value)
+
+  let temp = get(index - 1); // 1 spot before index
+  newNode.next = temp.next;
+  temp.next = newNode;
+  
+  this.length++;
+
+  return true;
+} 
+
+Topic: remove
+
+remove(index) {
+  if(index === 0) return this.shift();
+  if(index === this.length - 1) return this.pop();
+  if(index < 0 || index >= this.length) return undefined;
+
+  // Middle case
+  let before = get(index - 1);
+  let temp = before.next;
+
+  before.next = temp.next;
+  temp.next = null;
+  this.length--;
+
+  return temp;
+}
+
+Topic: reverse (common interview)
+
+- switch head and tail
+- reverse pointer
+- use temp to switch 
+
+- temp = head
+- head = tail
+- tail = temp
+
+- next = temp.next
+- prev = null
+- move prev temp next
+
+reverse() {
+  let temp = this.head;
+  this.head = this.tail;
+  this.tail = temp;
+
+  let next = temp.next;
+  let prev = null;
+
+  for(let i = 0; i < this.length; i++) {
+    next = temp.next;
+    temp.next = prev;
+    prev = temp;
+    temp = next;
+  }
+
+  return this;
+}
