@@ -28,3 +28,8 @@ let obj2 = obj1
 obj1.value = 22 (obj2.value will be 22 too.)
 
 - If that object don't have any variables pointing to it, JS will do the process called 'Garbage Collection'.
+
+- Section 1: Overview -
+
+IMPT Head and tail are not nodes.
+Both of them are variables that are pointers that can point to a node.
