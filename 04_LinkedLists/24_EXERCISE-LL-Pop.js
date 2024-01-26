@@ -79,10 +79,11 @@ class LinkedList {
     this.length--;
 
     // Case 3: 1 item
-    if (this.length === 0) {
-      this.head = null;
-      this.tail = null;
+    if (!this.length) {
+      this.head = this.tail = null;
     }
+
+    console.log(this);
 
     return temp;
   }

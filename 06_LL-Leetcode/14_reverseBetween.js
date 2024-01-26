@@ -115,10 +115,10 @@ class LinkedList {
       prev = prev.next;
     }
 
-    let current = prev.next;
+    let cur = prev.next;
     for (let i = 0; i < n - m; i++) {
-      const temp = current.next;
-      current.next = temp.next;
+      const temp = cur.next;
+      cur.next = temp.next;
       temp.next = prev.next;
       prev.next = temp;
     }

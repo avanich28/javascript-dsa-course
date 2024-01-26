@@ -105,7 +105,7 @@ class LinkedList {
 
   /// WRITE GET METHOD HERE ///
   get(index) {
-    if (index < 0 || index >= this.length) return undefined;
+    if (index < 0 || index >= this.length) return null;
 
     let temp = this.head;
     for (let i = 0; i < index; i++) {

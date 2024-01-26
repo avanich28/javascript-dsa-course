@@ -1,15 +1,18 @@
+"use strict";
+
 class Node {
   constructor(value) {
     this.value = value;
     this.next = null;
+    this.prev = null;
   }
 }
 
-class LinkedList {
+class DoublyLinkedList {
   constructor(value) {
     const newNode = new Node(value);
     this.head = newNode;
-    this.tail = this.head;
+    this.tail = newNode;
     this.length = 1;
   }
 
@@ -51,44 +54,38 @@ class LinkedList {
   push(value) {
     const newNode = new Node(value);
     if (!this.head) {
-      this.head = newNode;
-      this.tail = newNode;
+      this.head = this.tail = newNode;
     } else {
       this.tail.next = newNode;
+      newNode.prev = this.tail;
       this.tail = newNode;
     }
     this.length++;
+
     return this;
   }
 }
 
-function test() {
-  let myLinkedList = new LinkedList(1);
-  myLinkedList.makeEmpty();
-  myLinkedList.push(1);
-  myLinkedList.push(2);
-  myLinkedList.push(3);
-  myLinkedList.push(4);
+let myDLL = new DoublyLinkedList(1);
+myDLL.push(2);
 
-  myLinkedList.getHead();
-  myLinkedList.getTail();
-  myLinkedList.getLength();
-  console.log("\nLinked List:");
-  myLinkedList.printList();
-  console.log(myLinkedList);
-}
+myDLL.getHead();
+myDLL.getTail();
+myDLL.getLength();
 
-test();
+console.log("\nDoubly Linked List:");
+myDLL.printList();
+console.log(myDLL);
 
 /*
-    EXPECTED OUTPUT:
-    ----------------
-    Head: 1
-    Tail: 2
-    Length: 2
+  EXPECTED OUTPUT:
+  ----------------
+  Head: 1
+  Tail: 2
+  Length: 2
 
-    Linked List:
-    1
-    2
+  Doubly Linked List:
+  1
+  2
 
 */
